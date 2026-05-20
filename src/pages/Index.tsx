@@ -2,49 +2,60 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/files/728f2da9-0d39-4e9e-891d-c87f3eaa68d5.jpg";
-const ROOM_IMG = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/files/f75e4517-3a25-4cbf-8244-74eb6477bb1c.jpg";
-const SPA_IMG = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/files/6c9825ac-40a7-4d14-9173-156c3e098c15.jpg";
+
+// Фотографии номеров от пользователя
+const IMG_SOSNA_1 = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/bucket/4f4ed8ad-6762-49de-abaa-ce09f1723c93.jpeg";
+const IMG_SOSNA_2 = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/bucket/19b2ccdc-b667-4751-8ca6-42313ac417fa.jpeg";
+const IMG_LESNOY_1 = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/bucket/c38e466b-483a-471e-925b-94cea8c4a46e.jpeg";
+const IMG_SIBIR_1 = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/bucket/f37f78c5-f752-4436-b098-e9379eb0289c.jpeg";
+const IMG_SIBIR_2 = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/bucket/61fca199-4e59-4cc0-a471-69c2af15ad28.jpeg";
 
 const rooms = [
   {
-    name: "Лесной домик",
-    size: "32 м²",
+    name: "Сосновый бриз",
+    size: "28 м²",
     guests: "2 гостя",
-    price: "6 900",
-    desc: "Уютный домик с панорамным окном на сосновый лес, камином и деревянным декором.",
-    img: ROOM_IMG,
-    features: ["Камин", "Вид на лес", "Завтрак включён"],
+    price: "3 800",
+    desc: "Однокомнатный номер с двухспальной кроватью или двумя раздельными кроватями. Прикроватные тумбочки с лампами, шкаф, рабочая зона, мини-бар, чайный набор, сейф, кондиционер. Ванная комната с феном и набором фирменных банных принадлежностей.",
+    img: IMG_SOSNA_1,
+    bathImg: IMG_SOSNA_2,
+    features: ["Двухспальная или раздельные кровати", "Мини-бар", "Чайный набор", "Сейф", "Кондиционер", "Рабочая зона"],
   },
   {
-    name: "Семейный коттедж",
-    size: "58 м²",
+    name: "Лесной уют",
+    size: "35 м²",
+    guests: "2 гостя",
+    price: "5 200",
+    desc: "Однокомнатный номер с двухспальной кроватью, журнальным столиком, прикроватными тумбочками с лампами, зоной отдыха с креслами, рабочей зоной, сейфом и кондиционером. Ванная комната с феном и набором фирменных банных принадлежностей.",
+    img: IMG_LESNOY_1,
+    bathImg: IMG_SOSNA_2,
+    features: ["Двухспальная кровать", "Зона отдыха с креслами", "Журнальный столик", "Сейф", "Кондиционер", "Рабочая зона"],
+  },
+  {
+    name: "Сибирский шик",
+    size: "70 м²",
     guests: "4 гостя",
-    price: "12 400",
-    desc: "Просторный коттедж с двумя спальнями, гостиной и террасой, выходящей прямо в лес.",
-    img: HERO_IMG,
-    features: ["Терраса", "Две спальни", "Барбекю"],
-  },
-  {
-    name: "Спа-люкс",
-    size: "48 м²",
-    guests: "2 гостя",
-    price: "14 800",
-    desc: "Люкс с собственным горячим бассейном на открытой террасе среди деревьев.",
-    img: SPA_IMG,
-    features: ["Горячий бассейн", "Спа-процедуры", "Баттлер"],
+    price: "10 200",
+    desc: "Двухкомнатный номер с двуспальной кроватью в спальне, диван-кроватью в гостиной и обеденной зоной на 4 персоны. Ванная комната с феном и набором фирменных банных принадлежностей.",
+    img: IMG_SIBIR_1,
+    bathImg: IMG_SIBIR_2,
+    features: ["Двуспальная кровать", "Диван-кровать в гостиной", "Обеденная зона на 4 персоны", "Две комнаты", "Фен", "Фирменные принадлежности"],
   },
 ];
 
 const services = [
-  { icon: "Leaf", title: "СПА и баня", desc: "Фитобаня на берёзовых вениках, термальный бассейн, массаж с натуральными маслами" },
-  { icon: "UtensilsCrossed", title: "Ресторан", desc: "Кухня из местных продуктов, грибы и ягоды из леса, фермерское мясо" },
-  { icon: "TreePine", title: "Эко-экскурсии", desc: "Пешие маршруты, наблюдение за птицами, ночные прогулки с гидом" },
+  { icon: "UtensilsCrossed", title: "Ресторан «Таёжный»", desc: "Кухня из местных продуктов, сибирские деликатесы, дичь и рыба из экологически чистых источников" },
   { icon: "Wind", title: "Медитация в лесу", desc: "Утренние практики осознанности, дыхательные сессии, йога на природе" },
   { icon: "Bike", title: "Активный отдых", desc: "Велосипеды, каяки, рыбалка, скандинавская ходьба" },
   { icon: "Baby", title: "Детская программа", desc: "Изучение природы, лесные мастер-классы, безопасные тропы для детей" },
+  { icon: "Sparkles", title: "СПА-процедуры", desc: "Массаж с натуральными маслами, обёртывания, косметические процедуры" },
+  { icon: "Coffee", title: "Завтрак включён", desc: "Домашняя выпечка, местные джемы, натуральные продукты сибирских фермеров" },
 ];
 
-const gallery = [HERO_IMG, ROOM_IMG, SPA_IMG, HERO_IMG, SPA_IMG, ROOM_IMG];
+const gallery = [
+  IMG_SOSNA_1, IMG_SOSNA_2, IMG_LESNOY_1,
+  IMG_SIBIR_1, IMG_SIBIR_2, HERO_IMG,
+];
 
 function useScrollFade(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -82,6 +93,7 @@ export default function Index() {
   });
   const [bookingStatus, setBookingStatus] = useState<null | "loading" | "success">(null);
   const [galleryOpen, setGalleryOpen] = useState<number | null>(null);
+  const [expandedRoom, setExpandedRoom] = useState<number | null>(null);
 
   const navLinks = [
     { id: "rooms", label: "Номера" },
@@ -129,7 +141,7 @@ export default function Index() {
           <button onClick={() => scrollTo("hero")} className="flex items-center gap-2">
             <span className="text-2xl">🌿</span>
             <span className="font-display text-xl font-semibold tracking-wide" style={{ color: "hsl(var(--forest))" }}>
-              Лесная Усадьба
+              Уютный уголок
             </span>
           </button>
 
@@ -182,16 +194,10 @@ export default function Index() {
 
       {/* HERO */}
       <section id="hero" className="relative h-screen min-h-[600px] flex items-end overflow-hidden">
-        <img
-          src={HERO_IMG}
-          alt="Лесная Усадьба"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <img src={HERO_IMG} alt="Уютный уголок" className="absolute inset-0 w-full h-full object-cover" />
         <div
           className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to top, rgba(18,28,15,0.88) 0%, rgba(18,28,15,0.35) 55%, rgba(18,28,15,0.08) 100%)"
-          }}
+          style={{ background: "linear-gradient(to top, rgba(18,28,15,0.88) 0%, rgba(18,28,15,0.35) 55%, rgba(18,28,15,0.08) 100%)" }}
         />
         <div className="relative z-10 max-w-6xl mx-auto px-6 pb-20 w-full">
           <div className="max-w-2xl">
@@ -199,19 +205,19 @@ export default function Index() {
               className="font-body text-sm tracking-[0.25em] uppercase mb-4 opacity-0 animate-slide-up"
               style={{ color: "hsl(var(--earth-light))", animationFillMode: "forwards", animationDelay: "0.1s" }}
             >
-              Парк-отель · Природный отдых
+              Парк-отель · Кемерово
             </p>
             <h1
               className="font-display text-5xl md:text-7xl font-light leading-none mb-6 opacity-0 animate-slide-up"
               style={{ color: "#f5efe4", animationFillMode: "forwards", animationDelay: "0.25s" }}
             >
-              Там, где лес<br /><em>дышит</em> покоем
+              Уютный<br /><em>уголок</em>
             </h1>
             <p
               className="font-body text-base md:text-lg leading-relaxed mb-10 opacity-0 animate-slide-up"
               style={{ color: "rgba(245,239,228,0.78)", animationFillMode: "forwards", animationDelay: "0.4s" }}
             >
-              Экологичные домики и коттеджи в вековом лесу, спа с природными материалами и кухня из местных продуктов — всё это в 2 часах от города.
+              Парк-отель в сердце сибирской природы — 30 уютных номеров, ресторан «Таёжный» и живая тишина леса.
             </p>
             <div className="flex flex-wrap gap-4 opacity-0 animate-slide-up" style={{ animationFillMode: "forwards", animationDelay: "0.55s" }}>
               <button
@@ -233,8 +239,8 @@ export default function Index() {
 
           <div className="mt-16 flex flex-wrap gap-10">
             {[
-              { num: "12", label: "домиков и коттеджей" },
-              { num: "5 га", label: "природного парка" },
+              { num: "30", label: "уютных номеров" },
+              { num: "3", label: "категории размещения" },
               { num: "∞", label: "тишины и покоя" },
             ].map(s => (
               <div key={s.label}>
@@ -255,7 +261,7 @@ export default function Index() {
           <FadeSection>
             <div className="text-center mb-16">
               <p className="font-body text-xs tracking-[0.3em] uppercase mb-3" style={{ color: "hsl(var(--earth-mid))" }}>Проживание</p>
-              <h2 className="font-display text-4xl md:text-5xl font-light" style={{ color: "hsl(var(--bark))" }}>Номера и коттеджи</h2>
+              <h2 className="font-display text-4xl md:text-5xl font-light" style={{ color: "hsl(var(--bark))" }}>Номера и категории</h2>
               <div className="w-16 h-px mx-auto mt-6" style={{ backgroundColor: "hsl(var(--earth-mid))" }} />
             </div>
           </FadeSection>
@@ -271,6 +277,7 @@ export default function Index() {
                     transitionDelay: `${i * 100}ms`
                   }}
                 >
+                  {/* Main room image */}
                   <div className="relative h-52 overflow-hidden">
                     <img
                       src={room.img}
@@ -284,23 +291,44 @@ export default function Index() {
                       от {room.price} ₽/ночь
                     </div>
                   </div>
+
+                  {/* Bath image thumbnail */}
+                  <div className="h-24 overflow-hidden relative">
+                    <img src={room.bathImg} alt="Ванная" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 flex items-center px-3"
+                      style={{ backgroundColor: "rgba(18,28,15,0.45)" }}>
+                      <span className="font-body text-xs" style={{ color: "rgba(245,239,228,0.85)" }}>Ванная комната</span>
+                    </div>
+                  </div>
+
                   <div className="p-6 flex flex-col flex-1">
                     <h3 className="font-display text-2xl font-medium mb-2" style={{ color: "hsl(var(--bark))" }}>{room.name}</h3>
                     <div className="flex gap-4 mb-3 font-body text-xs" style={{ color: "hsl(var(--earth-mid))" }}>
                       <span className="flex items-center gap-1"><Icon name="Maximize2" size={12} />{room.size}</span>
                       <span className="flex items-center gap-1"><Icon name="Users" size={12} />{room.guests}</span>
                     </div>
-                    <p className="font-body text-sm leading-relaxed mb-5 flex-1" style={{ color: "hsl(var(--muted-foreground))" }}>
-                      {room.desc}
+                    <p className="font-body text-sm leading-relaxed mb-4 flex-1" style={{ color: "hsl(var(--muted-foreground))" }}>
+                      {expandedRoom === i ? room.desc : room.desc.slice(0, 100) + "..."}
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {room.features.map(f => (
-                        <span key={f} className="text-xs px-2.5 py-1 rounded-full font-body"
-                          style={{ backgroundColor: "hsl(var(--secondary))", color: "hsl(var(--earth))" }}>
-                          {f}
-                        </span>
-                      ))}
-                    </div>
+                    <button
+                      onClick={() => setExpandedRoom(expandedRoom === i ? null : i)}
+                      className="font-body text-xs mb-4 text-left underline underline-offset-2"
+                      style={{ color: "hsl(var(--forest))" }}
+                    >
+                      {expandedRoom === i ? "Свернуть" : "Подробнее об оснащении"}
+                    </button>
+
+                    {expandedRoom === i && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {room.features.map(f => (
+                          <span key={f} className="text-xs px-2.5 py-1 rounded-full font-body"
+                            style={{ backgroundColor: "hsl(var(--secondary))", color: "hsl(var(--earth))" }}>
+                            {f}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
                     <button
                       onClick={() => { setBookingForm(b => ({ ...b, room: room.name })); scrollTo("booking"); }}
                       className="w-full py-2.5 rounded text-sm tracking-wide transition-all hover:opacity-90"
@@ -335,14 +363,11 @@ export default function Index() {
           </FadeSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((s) => (
+            {services.map(s => (
               <FadeSection key={s.title}>
                 <div
                   className="p-7 rounded transition-all duration-300 hover:-translate-y-1"
-                  style={{
-                    backgroundColor: "rgba(245,239,228,0.07)",
-                    border: "1px solid rgba(245,239,228,0.13)"
-                  }}
+                  style={{ backgroundColor: "rgba(245,239,228,0.07)", border: "1px solid rgba(245,239,228,0.13)" }}
                 >
                   <div className="w-10 h-10 rounded flex items-center justify-center mb-4"
                     style={{ backgroundColor: "rgba(200,160,80,0.2)" }}>
@@ -472,7 +497,7 @@ export default function Index() {
                     className="w-full px-4 py-3 rounded font-body text-sm outline-none"
                     style={{ backgroundColor: "hsl(var(--cream))", border: "1px solid hsl(var(--border))", color: "hsl(var(--bark))" }}
                   >
-                    {[1, 2, 3, 4, 5, 6].map(n => (
+                    {[1, 2, 3, 4].map(n => (
                       <option key={n} value={n}>{n} {n === 1 ? "гость" : n < 5 ? "гостя" : "гостей"}</option>
                     ))}
                   </select>
@@ -480,7 +505,7 @@ export default function Index() {
 
                 <div>
                   <label className="block font-body text-xs tracking-wide uppercase mb-2" style={{ color: "hsl(var(--earth))" }}>
-                    Тип размещения
+                    Категория номера
                   </label>
                   <select
                     value={bookingForm.room}
@@ -488,7 +513,7 @@ export default function Index() {
                     className="w-full px-4 py-3 rounded font-body text-sm outline-none"
                     style={{ backgroundColor: "hsl(var(--cream))", border: "1px solid hsl(var(--border))", color: "hsl(var(--bark))" }}
                   >
-                    <option value="">Выберите тип</option>
+                    <option value="">Выберите категорию</option>
                     {rooms.map(r => (
                       <option key={r.name} value={r.name}>{r.name} — от {r.price} ₽/ночь</option>
                     ))}
@@ -558,9 +583,9 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
             {[
-              { icon: "MapPin", title: "Адрес", lines: ["Московская обл., Дмитровский р-н", "д. Лесное, ул. Заповедная, 1"] },
-              { icon: "Phone", title: "Телефон", lines: ["+7 (495) 123-45-67", "Ежедневно 8:00 — 22:00"] },
-              { icon: "Mail", title: "Email", lines: ["info@lesnaya-usadba.ru", "Ответим в течение часа"] },
+              { icon: "MapPin", title: "Адрес", lines: ["г. Кемерово", "ул. Заповедная, 1"] },
+              { icon: "Phone", title: "Телефон", lines: ["8 (951) 180-31-39", "Ежедневно 8:00 — 22:00"] },
+              { icon: "Mail", title: "Email", lines: ["info@uyutnyy-ugolok.ru", "Ответим в течение часа"] },
             ].map(c => (
               <FadeSection key={c.title}>
                 <div className="text-center">
@@ -585,7 +610,7 @@ export default function Index() {
               <div className="text-center">
                 <Icon name="Map" size={40} style={{ color: "hsl(var(--earth-light))", display: "block", margin: "0 auto 12px" }} />
                 <p className="font-display text-xl" style={{ color: "hsl(var(--cream))" }}>Карта проезда</p>
-                <p className="font-body text-sm mt-2" style={{ color: "rgba(245,239,228,0.45)" }}>2 часа от Москвы по Дмитровскому шоссе</p>
+                <p className="font-body text-sm mt-2" style={{ color: "rgba(245,239,228,0.45)" }}>г. Кемерово, ул. Заповедная, 1</p>
               </div>
             </div>
           </FadeSection>
@@ -597,10 +622,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="text-xl">🌿</span>
-            <span className="font-display text-lg" style={{ color: "hsl(var(--cream))" }}>Лесная Усадьба</span>
+            <span className="font-display text-lg" style={{ color: "hsl(var(--cream))" }}>Уютный уголок</span>
           </div>
           <p className="font-body text-xs" style={{ color: "rgba(245,239,228,0.35)" }}>
-            © 2024 Парк-отель Лесная Усадьба. Все права защищены.
+            © 2026 Парк-отель «Уютный уголок». Все права защищены.
           </p>
           <div className="flex gap-5">
             {navLinks.map(l => (
