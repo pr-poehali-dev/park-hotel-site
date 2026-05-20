@@ -141,7 +141,7 @@ export default function Index() {
           <button onClick={() => scrollTo("hero")} className="flex items-center gap-2">
             <span className="text-2xl">🌿</span>
             <span className="font-display text-xl font-semibold tracking-wide" style={{ color: "hsl(var(--forest))" }}>
-              Уютный уголок
+              Таёжный уголок
             </span>
           </button>
 
@@ -194,7 +194,7 @@ export default function Index() {
 
       {/* HERO */}
       <section id="hero" className="relative h-screen min-h-[600px] flex items-end overflow-hidden">
-        <img src={HERO_IMG} alt="Уютный уголок" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={HERO_IMG} alt="Таёжный уголок" className="absolute inset-0 w-full h-full object-cover" />
         <div
           className="absolute inset-0"
           style={{ background: "linear-gradient(to top, rgba(18,28,15,0.88) 0%, rgba(18,28,15,0.35) 55%, rgba(18,28,15,0.08) 100%)" }}
@@ -622,10 +622,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="text-xl">🌿</span>
-            <span className="font-display text-lg" style={{ color: "hsl(var(--cream))" }}>Уютный уголок</span>
+            <span className="font-display text-lg" style={{ color: "hsl(var(--cream))" }}>Таёжный уголок</span>
           </div>
           <p className="font-body text-xs" style={{ color: "rgba(245,239,228,0.35)" }}>
-            © 2026 Парк-отель «Уютный уголок». Все права защищены.
+            © 2026 Парк-отель «Таёжный уголок». Все права защищены.
           </p>
           <div className="flex gap-5">
             {navLinks.map(l => (
