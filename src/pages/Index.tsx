@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMG = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/files/728f2da9-0d39-4e9e-891d-c87f3eaa68d5.jpg";
+const HERO_IMG = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/bucket/92ca5b40-9bc9-4605-9f36-7f5dfe1a9899.jpeg";
 
 // Фотографии номеров от пользователя
 const IMG_SOSNA_1 = "https://cdn.poehali.dev/projects/33639e0c-8956-4064-ad39-265eb1350f03/bucket/4f4ed8ad-6762-49de-abaa-ce09f1723c93.jpeg";
@@ -583,7 +583,7 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
             {[
-              { icon: "MapPin", title: "Адрес", lines: ["г. Кемерово", "ул. Заповедная, 1"] },
+              { icon: "MapPin", title: "Адрес", lines: ["г. Кемерово"] },
               { icon: "Phone", title: "Телефон", lines: ["8 (951) 180-31-39", "Ежедневно 8:00 — 22:00"] },
               { icon: "Mail", title: "Email", lines: ["info@uyutnyy-ugolok.ru", "Ответим в течение часа"] },
             ].map(c => (
@@ -610,7 +610,7 @@ export default function Index() {
               <div className="text-center">
                 <Icon name="Map" size={40} style={{ color: "hsl(var(--earth-light))", display: "block", margin: "0 auto 12px" }} />
                 <p className="font-display text-xl" style={{ color: "hsl(var(--cream))" }}>Карта проезда</p>
-                <p className="font-body text-sm mt-2" style={{ color: "rgba(245,239,228,0.45)" }}>г. Кемерово, ул. Заповедная, 1</p>
+                <p className="font-body text-sm mt-2" style={{ color: "rgba(245,239,228,0.45)" }}>г. Кемерово</p>
               </div>
             </div>
           </FadeSection>
